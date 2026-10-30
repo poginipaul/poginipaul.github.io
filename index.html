@@ -1,234 +1,273 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Paul - Online Resume</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Draco is free PSD &amp; HTML template by @flamekaizar">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/kube.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/custom.min.css" />
-    <link rel="shortcut icon" href="img/favicon.png" />
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<style>
-		.intro h1:before {
-			/* Edit this with your name or anything else */
-			content: 'PAUL';
-		}
-	</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Paul | System &amp; Network Administrator</title>
+	<meta name="description" content="Paul — System and Network Administrator with 10+ years of experience in network design, server administration, virtualization, VoIP, email infrastructure and security monitoring.">
+	<meta property="og:title" content="Paul | System &amp; Network Administrator">
+	<meta property="og:description" content="Network design, server administration, virtualization, VoIP, email infrastructure and security monitoring.">
+	<meta property="og:image" content="img/ava.jpg">
+	<link rel="icon" href="img/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<!-- Navigation -->
-	<div class="main-nav">
-		<div class="container">
-			<header class="group top-nav">
-				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
-				    <span class="logo">PAUL</span>
-				</div>
-			    <nav id="navbar-1" class="navbar item-nav">
-				    <ul>
-				        <li class="active"><a href="#about">About</a></li>
-				        <li><a href="#experiences">Experiences</a></li>
-				        <li><a href="#achievements">Achievements</a></li>
-				        <li><a href="#skills">Skills</a></li>
-				    </ul>
-				</nav>
-			</header>
+	<header class="nav" id="top">
+		<div class="container nav-inner">
+			<a href="#top" class="brand">paul<span>@</span>sysadmin</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav-links">
+				<a href="#about">About</a>
+				<a href="#projects">Projects</a>
+				<a href="#experience">Experience</a>
+				<a href="#certifications">Certifications</a>
+				<a href="#skills">Skills</a>
+				<a href="#contact" class="nav-cta">Contact</a>
+			</nav>
 		</div>
-	</div>
+	</header>
 
-	<!-- Introduction -->
-	<div class="intro section" id="about">
-		<div class="container">
-			<p>Hi, I’m Paul</p>
-			<div class="units-row units-split wrap">
-				<div class="unit-20">
-					<img src="img/ava.jpg" alt="Avatar">
+	<main>
+		<!-- Hero -->
+		<section class="hero">
+			<div class="container hero-inner">
+				<div class="hero-text">
+					<p class="eyebrow">Hi, I'm Paul</p>
+					<h1>System &amp; Network Administrator</h1>
+					<p class="hero-typed">I build and secure <span id="typed" class="accent">networks</span><span class="cursor">|</span></p>
+					<p class="lead">10+ years designing networks, running servers and keeping infrastructure reliable and secure, from school campuses to remote clients across the globe.</p>
+					<div class="hero-actions">
+						<a href="#projects" class="btn btn-primary">View Projects</a>
+						<a href="#contact" class="btn btn-ghost">Get in Touch</a>
+					</div>
 				</div>
-				<div class="unit-80">
-					<h1>Your IT Guy for<br><span id="typed"></span></h1>					
+				<div class="hero-photo">
+					<img src="img/ava.jpg" alt="Portrait of Paul">
 				</div>
-				<p>
-					<h1>Objective</h1>
-<p>Experienced System Administrator with expertise in network design, server administration, virtualization, VoIP, and email infrastructure. Skilled in optimizing system performance, ensuring security, and delivering reliable IT solutions.</p>
-
-
-<h1>Core Skills</h1>
-<ul>
-<li><strong>Networking:</strong> TCP/IP, DNS, DHCP, VPN, VLANs, OSPF, BGP</li>
-<li><strong>Platforms:</strong> Cisco IOS, VyOS, Ubiquiti UniFi, Juniper</li>
-<li><strong>Systems:</strong> Windows Server, Linux (Debian, Ubuntu, CentOS)</li>
-<li><strong>Virtualization:</strong> Proxmox, VMware ESXi</li>
-<li><strong>Web/DB:</strong> Apache, NGINX (reverse proxy, load balancing), PostgreSQL</li>
-<li><strong>Automation:</strong> Python, Bash</li>
-<li><strong>VoIP:</strong> FusionPBX, SIP trunking, call routing</li>
-<li><strong>Email Infrastructure:</strong> MX, SPF, DKIM, DMARC, security hardening, MFA</li>
-<li><strong>Digital Illustration:</strong>:</strong> Adobe Illustrator, Adobe Photoshop, Infinite Painter, Krita</li>
-</ul>
-				</p>				
 			</div>
-		</div>
-	</div>
+		</section>
 
-	<!-- Work Experience -->
-	<div class="work section second" id="experiences">
-		<div class="container">
-			<h1>Work<br>Experiences</h1>
-			<ul class="work-list">
-				<li>2011 - 2012</li>
-				<li><a href="#">Pinsao National High School</a></li>
-				<li>School IT Support</li>
-			</ul>
-			<ul class="work-list">
-				<li>2012 - 2013</li>
-				<li><a href="#">Highland Engineering and Drafting Services</a></li>
-				<li>Draftsman | Scrubber</li>
-			</ul>
-			<ul class="work-list">
-				<li>2013 - 2016</li>
-				<li><a href="#">St. Louis School Center, Inc. (Elementary Dept.)</a></li>
-				<li>School IT Systems/Network Admin</li>
-			</ul>
-			<ul class="work-list">
-				<li>2016 - 2018</li>
-				<li><a href="#">New Media Services PH</a></li>
-				<li>Jr. Network Administrator</li>
-			</ul>
-			<ul class="work-list">
-                                <li>2017 - 2022</li>
-                                <li><a href="#">OneSolutions, LLC</a></li>
-                                <li>Remote IT Network Administrator</li>
-                        </ul>
-<ul class="work-list">
-                                <li>2019 - 2023</li>
-                                <li><a href="#">ConnectMeVoice</a></li>
-                                <li>VoIP Support</li>
-                        </ul>
-
-			<ul class="work-list">
-                                <li>2022 - Present</li>
-                                <li><a href="#">Freelance</a></li>
-                                <li>IT System Admin</li>
-            </ul>
-			<ul class="work-list">
-                                <li> Present</li>
-                                <li><a href="#">Freelance</a></li>
-                                <li>Digital Illustrator</li>
-								<li>Portfolio: https://www.instagram.com/w00dxff</li>
-            </ul>
-		</div>
-	</div>
-
-	<!-- Award & Achievements -->
-	<div class="award section second" id="achievements">
-		<div class="container">
-			<h1>Trainings &amp;<br>Certifications</h1>
-			<ul class="award-list list-flat">
-				<li>2015</li>
-				<li>Computer Hardware Servicing NC II</li>
-				<li>TESDA</li>
-			</ul>
-			<ul class="award-list list-flat">
-				<li>2016</li>
-				<li>Cisco Certified Network Associate V.2.</li>
-				<li>Cisco</li>
-			</ul>
-			<ul class="award-list list-flat">
-				<li>2018</li>
-				<li>Microsoft Technology Associate: 98-366</li>
-				<li>Networking Fundamentals</li>
-                                <li>Microsoft</li>
-			</ul>
-                        <ul class="award-list list-flat">
-                                <li>2019</li>
-                                <li>Microsoft Technology Associate: 98-367</li>
-                                <li>Security Fundamentals</li>
-                                <li>Microsoft</li>
-                        </ul>
-                        <ul class="award-list list-flat">
-                                <li>2020</li>
-                                <li>Introduction to Cybersecurity (Badge)</li>
-                                <li>Cisco</li>
-                        </ul>
-			<ul class="award-list list-flat">
-                                <li>2020</li>
-                                <li>Palo Alto Networks Certified Network Security Administrator (PCSNA)</li>
-                                <li>Palo Alto</li>
-                        </ul>
-                        <ul class="award-list list-flat">
-                                <li>2021</li>
-                                <li>Microsoft Certified: Azure Fundamentals</li>
-                                <li>Microsoft</li>
-                        </ul>
-                        <ul class="award-list list-flat">
-                                <li>2022</li>
-                                <li>Udemy Labs - Docker for Absolute Beginner</li>
-                                <li>KodeKloud | Udemy</li>
-                        </ul>
-			<ul class="award-list list-flat">
-				<li>2022</li>
-				<li>Udemy Labs - Online Kubernetes Lab for Beginners - Hands On</li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Technical Skills -->
-	<div class="skills section second" id="skills">
-		<div class="container">
-			<h1>Technical<br>Skills</h1>
-			<ul class="skill-list list-flat">
-				<li>System | Server</li>
-				<li>Windows Server / Linux (Ubuntu, Debian, CentOS) / Cloud / VPS / Virtual Servers (Promox/VMWare) / Dell RAID / Email / Apache / NGINX / Docker</li>
-			</ul>
-			<ul class="skill-list list-flat">
-				<li>Database</li>
-				<li>Basic in PostgreSQL</li>
-			</ul>
-			<ul class="skill-list list-flat">
-				<li>Network</li>
-				<li>Cisco / VyOS Vyatta / Ubiquiti / FusionPBX VoIP / OpenNMS / Grafana Loki / Juniper Switch / OpenVPN / Security / Palo Alto</li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Quote -->
-	<div class="quote">
-		<div class="container text-centered">
-			<h1>Network Administrator | System Administrator</h1>
-		</div>
-	</div>
-
-	<footer>
-		<div class="container">
-			<div class="units-row">
-			    <div class="unit-50">
-			    	<p></p>
-			    </div>
-			    <!-- <div class="unit-50">
-					<ul class="social list-flat right">
-						<li><a href="mailto:afnizarhilmi@gmail.com"><i class="fa fa-send"></i></a></li>
-						<li><a href="http://twitter.com/flamekaizar"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="http://dribbble.com/flamekaizar"><i class="fa fa-dribbble"></i></a></li>
-						<li><a href="http://behance.com/flamekaizar"><i class="fa fa-behance"></i></a></li>
+		<!-- About -->
+		<section class="section" id="about">
+			<div class="container">
+				<h2 class="section-title"><span>01.</span> About</h2>
+				<div class="about-grid">
+					<div>
+						<p>Experienced System Administrator with expertise in network design, server administration, virtualization, VoIP and email infrastructure. I focus on optimizing system performance, hardening security and delivering IT solutions that just work.</p>
+						<p>My background spans on-site school IT, enterprise network operations and remote administration for international clients. Lately I've been building out my security operations skills through hands-on homelab projects.</p>
+					</div>
+					<ul class="stats">
+						<li><strong>10+</strong><span>Years in IT</span></li>
+						<li><strong>9</strong><span>Certifications &amp; trainings</span></li>
+						<li><strong>7</strong><span>Organizations served</span></li>
 					</ul>
-			    </div>-->
+				</div>
 			</div>
+		</section>
+
+		<!-- Projects -->
+		<section class="section alt" id="projects">
+			<div class="container">
+				<h2 class="section-title"><span>02.</span> Projects</h2>
+
+				<article class="project featured">
+					<div class="project-head">
+						<div>
+							<p class="project-tag">Security Operations · Homelab</p>
+							<h3>Wazuh SOC Homelab</h3>
+						</div>
+						<i class="project-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+						</i>
+					</div>
+					<p>A self-hosted Security Operations Center built on Proxmox to practice threat detection, log analysis and incident response end to end. Wazuh acts as the SIEM/XDR, collecting and correlating telemetry from Windows and Linux endpoints, with simulated attacks used to validate detections.</p>
+
+					<div class="project-cols">
+						<div>
+							<h4>What I built</h4>
+							<ul class="check-list">
+								<li>Deployed Wazuh manager, indexer and dashboard on a Proxmox VM</li>
+								<li>Enrolled Windows and Linux endpoints with Wazuh agents</li>
+								<li>Integrated Sysmon for detailed Windows process and network telemetry</li>
+								<li>File Integrity Monitoring on critical system and web directories</li>
+								<li>Vulnerability detection and CIS benchmark (SCA) assessments</li>
+								<li>Custom decoders and rules mapped to MITRE ATT&amp;CK</li>
+								<li>Active response to automatically block brute-force source IPs</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Detection scenarios tested</h4>
+							<ul class="check-list">
+								<li>SSH and RDP brute-force attempts</li>
+								<li>Malicious PowerShell and suspicious process execution</li>
+								<li>Unauthorized file changes and new user creation</li>
+								<li>Port scans and reconnaissance from an attacker VM</li>
+							</ul>
+							<h4>Architecture</h4>
+							<pre class="diagram">[Attacker VM]
+     │
+     ▼
+[Windows + Sysmon]  [Linux servers]
+     │  agent            │  agent
+     └────────┬──────────┘
+              ▼
+   [Wazuh Manager / Indexer]
+              ▼
+     [Wazuh Dashboard]
+     alerts · MITRE · FIM</pre>
+						</div>
+					</div>
+
+					<ul class="tags">
+						<li>Wazuh</li><li>SIEM</li><li>XDR</li><li>Proxmox</li><li>Sysmon</li><li>MITRE ATT&amp;CK</li><li>Linux</li><li>Windows Server</li><li>Incident Response</li>
+					</ul>
+				</article>
+			</div>
+		</section>
+
+		<!-- Experience -->
+		<section class="section" id="experience">
+			<div class="container">
+				<h2 class="section-title"><span>03.</span> Experience</h2>
+				<ol class="timeline">
+					<li>
+						<span class="date">2022 – Present</span>
+						<h3>IT System Administrator</h3>
+						<p class="org">Freelance</p>
+						<p>Server, network, email and VoIP administration for remote clients.</p>
+					</li>
+					<li>
+						<span class="date">Present</span>
+						<h3>Digital Illustrator</h3>
+						<p class="org">Freelance</p>
+						<p>Portfolio: <a href="https://www.instagram.com/w00dxff" target="_blank" rel="noopener">instagram.com/w00dxff</a></p>
+					</li>
+					<li>
+						<span class="date">2019 – 2023</span>
+						<h3>VoIP Support</h3>
+						<p class="org">ConnectMeVoice</p>
+					</li>
+					<li>
+						<span class="date">2017 – 2022</span>
+						<h3>Remote IT Network Administrator</h3>
+						<p class="org">OneSolutions, LLC</p>
+					</li>
+					<li>
+						<span class="date">2016 – 2018</span>
+						<h3>Jr. Network Administrator</h3>
+						<p class="org">New Media Services PH</p>
+					</li>
+					<li>
+						<span class="date">2013 – 2016</span>
+						<h3>School IT Systems / Network Administrator</h3>
+						<p class="org">St. Louis School Center, Inc. (Elementary Dept.)</p>
+					</li>
+					<li>
+						<span class="date">2012 – 2013</span>
+						<h3>Draftsman | Scrubber</h3>
+						<p class="org">Highland Engineering and Drafting Services</p>
+					</li>
+					<li>
+						<span class="date">2011 – 2012</span>
+						<h3>School IT Support</h3>
+						<p class="org">Pinsao National High School</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- Certifications -->
+		<section class="section alt" id="certifications">
+			<div class="container">
+				<h2 class="section-title"><span>04.</span> Trainings &amp; Certifications</h2>
+				<div class="cert-grid">
+					<div class="cert"><span class="year">2022</span><h3>Online Kubernetes Lab for Beginners – Hands On</h3><p>Udemy Labs</p></div>
+					<div class="cert"><span class="year">2022</span><h3>Docker for Absolute Beginners</h3><p>KodeKloud · Udemy</p></div>
+					<div class="cert"><span class="year">2021</span><h3>Microsoft Certified: Azure Fundamentals</h3><p>Microsoft</p></div>
+					<div class="cert"><span class="year">2020</span><h3>Palo Alto Networks Certified Network Security Administrator (PCNSA)</h3><p>Palo Alto Networks</p></div>
+					<div class="cert"><span class="year">2020</span><h3>Introduction to Cybersecurity</h3><p>Cisco · Badge</p></div>
+					<div class="cert"><span class="year">2019</span><h3>MTA 98-367: Security Fundamentals</h3><p>Microsoft</p></div>
+					<div class="cert"><span class="year">2018</span><h3>MTA 98-366: Networking Fundamentals</h3><p>Microsoft</p></div>
+					<div class="cert"><span class="year">2016</span><h3>Cisco Certified Network Associate v2</h3><p>Cisco</p></div>
+					<div class="cert"><span class="year">2015</span><h3>Computer Hardware Servicing NC II</h3><p>TESDA</p></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Skills -->
+		<section class="section" id="skills">
+			<div class="container">
+				<h2 class="section-title"><span>05.</span> Technical Skills</h2>
+				<div class="skill-grid">
+					<div class="skill">
+						<h3>Networking</h3>
+						<ul class="tags"><li>TCP/IP</li><li>DNS</li><li>DHCP</li><li>VPN / OpenVPN</li><li>VLANs</li><li>OSPF</li><li>BGP</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Network Platforms</h3>
+						<ul class="tags"><li>Cisco IOS</li><li>VyOS / Vyatta</li><li>Ubiquiti UniFi</li><li>Juniper</li><li>Palo Alto</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Security &amp; Monitoring</h3>
+						<ul class="tags"><li>Wazuh SIEM</li><li>Sysmon</li><li>OpenNMS</li><li>Grafana Loki</li><li>Hardening</li><li>MFA</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Systems</h3>
+						<ul class="tags"><li>Windows Server</li><li>Debian</li><li>Ubuntu</li><li>CentOS</li><li>Dell RAID</li><li>Cloud / VPS</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Virtualization &amp; Containers</h3>
+						<ul class="tags"><li>Proxmox</li><li>VMware ESXi</li><li>Docker</li><li>Kubernetes (basics)</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Web &amp; Database</h3>
+						<ul class="tags"><li>Apache</li><li>NGINX (reverse proxy, load balancing)</li><li>PostgreSQL</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Email Infrastructure</h3>
+						<ul class="tags"><li>MX</li><li>SPF</li><li>DKIM</li><li>DMARC</li><li>Security hardening</li></ul>
+					</div>
+					<div class="skill">
+						<h3>VoIP</h3>
+						<ul class="tags"><li>FusionPBX</li><li>SIP trunking</li><li>Call routing</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Automation</h3>
+						<ul class="tags"><li>Python</li><li>Bash</li></ul>
+					</div>
+					<div class="skill">
+						<h3>Digital Illustration</h3>
+						<ul class="tags"><li>Adobe Illustrator</li><li>Adobe Photoshop</li><li>Infinite Painter</li><li>Krita</li></ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact -->
+		<section class="section contact" id="contact">
+			<div class="container text-center">
+				<h2 class="section-title center"><span>06.</span> Get in Touch</h2>
+				<p class="lead">Open to system administration, network and SOC opportunities. Feel free to reach out.</p>
+				<div class="contact-links">
+					<a href="https://github.com/poginipaul" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+					<a href="https://www.instagram.com/w00dxff" target="_blank" rel="noopener" class="btn btn-ghost">Instagram</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="container">
+			<p>© <span id="year"></span> Paul · Network Administrator | System Administrator</p>
 		</div>
 	</footer>
 
-	<!-- Javascript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/typed.min.js"></script>
-    <script src="js/kube.min.js"></script>
-    <script src="js/site.js"></script>
-    <script>
-		function newTyped(){}$(function(){$("#typed").typed({
-		// Change to edit type effect
-		strings: ["Networks", "Systems", "Servers"],
-
-		typeSpeed:90,backDelay:700,contentType:"html",loop:!0,resetCallback:function(){newTyped()}}),$(".reset").click(function(){$("#typed").typed("reset")})});
-    </script>
+	<script src="js/main.js"></script>
 </body>
 </html>
