@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Paul — Network &amp; Systems Administrator</title>
-  <meta name="description" content="Paul is a network and systems administrator with over a decade of experience in network design, server administration, virtualization, VoIP and email infrastructure.">
+  <meta name="description" content="Paul is a network and systems administrator with over a decade of experience in network design, server administration, virtualization, VoIP, email infrastructure and security monitoring.">
   <meta name="author" content="Paul">
   <link rel="canonical" href="https://poginipaul.github.io/">
 
@@ -12,6 +12,7 @@
   <meta property="og:title" content="Paul — Network &amp; Systems Administrator">
   <meta property="og:description" content="Network design, server administration, virtualization, VoIP and email infrastructure. Over a decade of hands-on IT experience.">
   <meta property="og:url" content="https://poginipaul.github.io/">
+  <meta property="og:image" content="https://poginipaul.github.io/img/ava.jpg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Paul — Network &amp; Systems Administrator">
   <meta name="twitter:description" content="Network design, server administration, virtualization, VoIP and email infrastructure.">
@@ -39,7 +40,8 @@
       "Windows Server and Linux administration",
       "Virtualization",
       "VoIP",
-      "Email infrastructure security"
+      "Email infrastructure security",
+      "Security monitoring with Wazuh SIEM"
     ],
     "sameAs": [
       "https://github.com/poginipaul",
@@ -68,8 +70,8 @@
         </button>
         <ul class="nav-list" id="nav-list">
           <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
           <li><a href="#certifications">Certifications</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -93,16 +95,17 @@
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Network · Systems · VoIP</p>
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Network · Systems · Security</p>
           <h1>Infrastructure that stays quiet, reliable, and secure.</h1>
           <p class="lead">
             I&rsquo;m Paul, a network and systems administrator with over a decade of hands-on
             experience designing networks, running servers and virtualization, and keeping
-            email and VoIP platforms delivering.
+            email and VoIP platforms delivering &mdash; now with a growing focus on security
+            monitoring and detection.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#experience">
-              View experience
+            <a class="btn btn-primary" href="#projects">
+              View projects
               <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
             </a>
             <a class="btn btn-ghost" href="#contact">Get in touch</a>
@@ -156,6 +159,7 @@
           <li>PostgreSQL</li>
           <li>FusionPBX</li>
           <li>Palo Alto</li>
+          <li>Wazuh</li>
           <li>Grafana Loki</li>
         </ul>
       </div>
@@ -235,11 +239,180 @@
       </div>
     </section>
 
+    <!-- Projects -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="section-label">02 — Projects</p>
+          <h2 id="projects-title">Selected projects</h2>
+          <p class="section-intro">Security labs, networks and platforms I&rsquo;ve designed, built and kept running.</p>
+        </div>
+
+        <ul class="project-grid">
+          <li class="project-card project-featured reveal">
+            <div class="soc-console" aria-hidden="true">
+              <div class="soc-bar">
+                <span class="soc-dots"><i></i><i></i><i></i></span>
+                <span>wazuh &middot; security events</span>
+                <span class="soc-live">live</span>
+              </div>
+              <ul class="soc-feed">
+                <li><span class="sev sev-high">12</span><span class="soc-msg">SSH brute force &mdash; multiple failed logins</span><span class="soc-mitre">T1110</span></li>
+                <li><span class="sev sev-ok">AR</span><span class="soc-msg">Active response: source IP blocked</span><span class="soc-mitre">firewall-drop</span></li>
+                <li><span class="sev sev-high">10</span><span class="soc-msg">Encoded PowerShell command executed</span><span class="soc-mitre">T1059.001</span></li>
+                <li><span class="sev sev-med">7</span><span class="soc-msg">Integrity checksum changed: /etc/passwd</span><span class="soc-mitre">FIM</span></li>
+                <li><span class="sev sev-med">8</span><span class="soc-msg">New local user added to the system</span><span class="soc-mitre">T1136</span></li>
+                <li><span class="sev sev-med">6</span><span class="soc-msg">Port scan detected from attacker VM</span><span class="soc-mitre">T1046</span></li>
+                <li><span class="sev sev-high">10</span><span class="soc-msg">Vulnerability detected: outdated OpenSSH package</span><span class="soc-mitre">CVE</span></li>
+                <li><span class="sev sev-low">3</span><span class="soc-msg">CIS benchmark scan finished: 74% passed</span><span class="soc-mitre">SCA</span></li>
+              </ul>
+              <div class="soc-flow">
+                <span>Endpoints</span><span class="soc-arrow">&rarr;</span><span>Agents</span><span class="soc-arrow">&rarr;</span><span>Manager</span><span class="soc-arrow">&rarr;</span><span>Indexer</span><span class="soc-arrow">&rarr;</span><span>Dashboard</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <p class="project-kicker"><span class="tag tag-current">Featured</span> Security operations &middot; Homelab</p>
+              <h3>Wazuh SOC homelab</h3>
+              <p>
+                A self-hosted security operations centre on Proxmox for practising detection,
+                log analysis and incident response end to end. Wazuh collects and correlates
+                telemetry from Windows and Linux endpoints, and an attacker VM generates
+                real activity to prove each detection fires.
+              </p>
+              <ul class="project-points">
+                <li>Wazuh manager, indexer and dashboard deployed on Proxmox, with agents on Windows and Linux hosts</li>
+                <li>Sysmon on Windows for process, network and PowerShell telemetry</li>
+                <li>File integrity monitoring, vulnerability detection and CIS benchmark (SCA) checks</li>
+                <li>Custom rules mapped to MITRE ATT&amp;CK, tested against brute-force, PowerShell and persistence techniques</li>
+                <li>Active response that automatically blocks brute-force source IPs</li>
+              </ul>
+              <ul class="chips project-tech">
+                <li>Wazuh</li><li>SIEM / XDR</li><li>Proxmox</li><li>Sysmon</li><li>MITRE ATT&amp;CK</li><li>Incident response</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M12 7.4v3.2M10.1 12.4 6.6 15.9M13.9 12.4l3.5 3.5"/></svg>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Campus network redesign</h3>
+              <p>
+                Rebuilt a school&rsquo;s flat LAN into segmented VLANs, with a documented IP
+                plan, managed switches, and firewall rules that keep staff, students and
+                guests apart.
+              </p>
+              <ul class="chips project-tech">
+                <li>VLANs</li><li>Cisco IOS</li><li>UniFi</li><li>Firewall policy</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="6.5" rx="1.6"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="1.6"/><path d="M7 7.2h.01M7 16.7h.01"/></svg>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Server virtualization move</h3>
+              <p>
+                Consolidated a rack of aging physical servers onto Proxmox &mdash; snapshots,
+                scheduled off-site backups, and a restore path tested for every guest before
+                anything was decommissioned.
+              </p>
+              <ul class="chips project-tech">
+                <li>Proxmox</li><li>Debian</li><li>Dell RAID</li><li>Backup &amp; recovery</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Email deliverability hardening</h3>
+              <p>
+                Moved a small business off shared-hosting mail: own relays, correct MX
+                records, and SPF, DKIM and DMARC aligned so invoices stopped landing in
+                spam folders.
+              </p>
+              <ul class="chips project-tech">
+                <li>SPF</li><li>DKIM</li><li>DMARC</li><li>MX &amp; relays</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a10 10 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2Z"/></svg>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Hosted phone system rollout</h3>
+              <p>
+                Deployed FusionPBX for a contact-centre team &mdash; SIP trunking, ring groups
+                and time-of-day routing &mdash; with call quality and registrations watched
+                from day one.
+              </p>
+              <ul class="chips project-tech">
+                <li>FusionPBX</li><li>SIP trunking</li><li>Call routing</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3.5 19.5h17"/><path d="M4 15l4.5-5 3.5 3 6.5-7"/><path d="M15 6h3.5v3.5"/></svg>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Monitoring &amp; alerting</h3>
+              <p>
+                Replaced guesswork with dashboards: Prometheus metrics, Grafana Loki logs and
+                OpenNMS availability checks, alerting on the failures that actually reach
+                users.
+              </p>
+              <ul class="chips project-tech">
+                <li>Prometheus</li><li>Grafana Loki</li><li>OpenNMS</li><li>Bash</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2"/></svg>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Remote access for distributed teams</h3>
+              <p>
+                Built site-to-site and client VPNs so remote staff reach internal systems
+                without exposing them, backed by MFA and per-role firewall rules.
+              </p>
+              <ul class="chips project-tech">
+                <li>OpenVPN</li><li>VyOS</li><li>MFA</li><li>Firewall policy</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <!-- Experience -->
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="section-label">02 — Experience</p>
+          <p class="section-label">03 — Experience</p>
           <h2 id="experience-title">Where I&rsquo;ve worked</h2>
           <p class="section-intro">Fifteen years across education, engineering, BPO, and remote-managed IT.</p>
         </div>
@@ -324,138 +497,6 @@
             </div>
           </li>
         </ol>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="section-label">03 — Projects</p>
-          <h2 id="projects-title">Selected projects</h2>
-          <p class="section-intro">Networks, servers and platforms I&rsquo;ve designed, built and kept running.</p>
-        </div>
-
-        <ul class="project-grid">
-          <li class="project-card reveal">
-            <figure class="project-media">
-              <span class="project-media-fallback" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
-                <span>Image coming soon</span>
-              </span>
-            </figure>
-            <div class="project-body">
-              <h3>Campus network redesign</h3>
-              <p>
-                Rebuilt a school&rsquo;s flat LAN into segmented VLANs, with a documented IP
-                plan, managed switches, and firewall rules that keep staff, students and
-                guests apart.
-              </p>
-              <ul class="chips project-tech">
-                <li>VLANs</li><li>Cisco IOS</li><li>UniFi</li><li>Firewall policy</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project-card reveal">
-            <figure class="project-media">
-              <span class="project-media-fallback" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
-                <span>Image coming soon</span>
-              </span>
-            </figure>
-            <div class="project-body">
-              <h3>Server virtualization move</h3>
-              <p>
-                Consolidated a rack of aging physical servers onto Proxmox &mdash; snapshots,
-                scheduled off-site backups, and a restore path tested for every guest before
-                anything was decommissioned.
-              </p>
-              <ul class="chips project-tech">
-                <li>Proxmox</li><li>Debian</li><li>Dell RAID</li><li>Backup &amp; recovery</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project-card reveal">
-            <figure class="project-media">
-              <span class="project-media-fallback" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
-                <span>Image coming soon</span>
-              </span>
-            </figure>
-            <div class="project-body">
-              <h3>Email deliverability hardening</h3>
-              <p>
-                Moved a small business off shared-hosting mail: own relays, correct MX
-                records, and SPF, DKIM and DMARC aligned so invoices stopped landing in
-                spam folders.
-              </p>
-              <ul class="chips project-tech">
-                <li>SPF</li><li>DKIM</li><li>DMARC</li><li>MX &amp; relays</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project-card reveal">
-            <figure class="project-media">
-              <span class="project-media-fallback" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
-                <span>Image coming soon</span>
-              </span>
-            </figure>
-            <div class="project-body">
-              <h3>Hosted phone system rollout</h3>
-              <p>
-                Deployed FusionPBX for a contact-centre team &mdash; SIP trunking, ring groups
-                and time-of-day routing &mdash; with call quality and registrations watched
-                from day one.
-              </p>
-              <ul class="chips project-tech">
-                <li>FusionPBX</li><li>SIP trunking</li><li>Call routing</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project-card reveal">
-            <figure class="project-media">
-              <span class="project-media-fallback" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
-                <span>Image coming soon</span>
-              </span>
-            </figure>
-            <div class="project-body">
-              <h3>Monitoring &amp; alerting</h3>
-              <p>
-                Replaced guesswork with dashboards: Prometheus metrics, Grafana Loki logs and
-                OpenNMS availability checks, alerting on the failures that actually reach
-                users.
-              </p>
-              <ul class="chips project-tech">
-                <li>Prometheus</li><li>Grafana Loki</li><li>OpenNMS</li><li>Bash</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project-card reveal">
-            <figure class="project-media">
-              <span class="project-media-fallback" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
-                <span>Image coming soon</span>
-              </span>
-            </figure>
-            <div class="project-body">
-              <h3>Remote access for distributed teams</h3>
-              <p>
-                Built site-to-site and client VPNs so remote staff reach internal systems
-                without exposing them, backed by MFA and per-role firewall rules.
-              </p>
-              <ul class="chips project-tech">
-                <li>OpenVPN</li><li>VyOS</li><li>MFA</li><li>Firewall policy</li>
-              </ul>
-            </div>
-          </li>
-        </ul>
       </div>
     </section>
 
@@ -591,6 +632,7 @@
             </span>
             <h3>Security</h3>
             <ul class="chips">
+              <li>Wazuh SIEM</li><li>Sysmon</li><li>MITRE ATT&amp;CK</li>
               <li>Palo Alto</li><li>Firewall policy</li><li>OpenVPN</li>
               <li>Hardening</li><li>Backup &amp; recovery</li>
             </ul>
