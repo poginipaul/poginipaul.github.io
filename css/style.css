@@ -856,6 +856,104 @@ svg {
   border: 1px solid var(--accent-ring);
 }
 
+/* Projects ---------------------------------------------------------------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.project-media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-subtle);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease);
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.03);
+}
+
+/* Shown until a real image is added to the figure. */
+.project-media-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  height: 100%;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 0.7rem,
+    var(--accent-soft) 0.7rem calc(0.7rem + 1px)
+  );
+}
+
+.project-media-fallback svg {
+  width: 22px;
+  height: 22px;
+  color: var(--line-strong);
+}
+
+.project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.project-body h3 {
+  font-size: 1.125rem;
+}
+
+.project-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.project-tech {
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
+.project-tech li {
+  font-size: 0.75rem;
+}
+
 /* Certifications ---------------------------------------------------------- */
 .cert-grid {
   display: grid;
@@ -1123,6 +1221,17 @@ svg {
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .nav-list {
+    gap: 0.15rem;
+  }
+
+  .nav-list a {
+    padding-inline: 0.55rem;
+    font-size: 0.84rem;
+  }
+}
+
 @media (max-width: 960px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -1246,6 +1355,10 @@ svg {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .hero-actions .btn,
   .contact-actions .btn {
     flex: 1 1 auto;
@@ -1316,11 +1429,16 @@ svg {
 
   .principle,
   .cert-card,
+  .project-card,
   .skill-card,
   .about-facts,
   .contact-panel {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .project-media {
+    display: none;
   }
 
   .timeline-item {

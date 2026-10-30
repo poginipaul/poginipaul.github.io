@@ -7,7 +7,7 @@ frameworks, no dependencies: push to `main` and GitHub Pages serves it as is.
 ## Structure
 
 ```
-index.html      single page: hero, about, experience, certifications, skills, contact
+index.html      single page: hero, about, experience, projects, certifications, skills, contact
 css/style.css   all styles, design tokens, dark theme, responsive and print rules
 js/main.js      theme toggle, mobile menu, scroll reveal, scrollspy
 img/            avatar and favicon
@@ -29,6 +29,12 @@ python3 -m http.server 3000
   `href="mailto:you@example.com"` (and add it to the JSON-LD block in `<head>`).
 - **Experience / certifications / skills** — plain list markup; copy an existing
   item and edit the text.
+- **Projects** — each entry is a `.project-card` in the `#projects` list. Copy a
+  card and edit the title, description and `.project-tech` chips. The media area
+  currently shows a "coming soon" placeholder; to add a picture, replace the
+  `<span class="project-media-fallback">…</span>` inside `<figure class="project-media">`
+  with `<img src="img/projects/name.jpg" alt="Describe the image" width="1200" height="750" loading="lazy">`
+  (16:10 crops cleanly; any size is scaled to fit).
 - **Photo** — replace `img/ava.jpg` with a square image (330 × 330 or larger).
 - **Colours** — the `:root` block at the top of `css/style.css` holds every colour
   and radius. `--accent` controls the highlight colour in both themes.

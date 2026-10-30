@@ -69,6 +69,7 @@
         <ul class="nav-list" id="nav-list">
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#certifications">Certifications</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -326,11 +327,143 @@
       </div>
     </section>
 
+    <!-- Projects -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="section-label">03 — Projects</p>
+          <h2 id="projects-title">Selected projects</h2>
+          <p class="section-intro">Networks, servers and platforms I&rsquo;ve designed, built and kept running.</p>
+        </div>
+
+        <ul class="project-grid">
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
+                <span>Image coming soon</span>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Campus network redesign</h3>
+              <p>
+                Rebuilt a school&rsquo;s flat LAN into segmented VLANs, with a documented IP
+                plan, managed switches, and firewall rules that keep staff, students and
+                guests apart.
+              </p>
+              <ul class="chips project-tech">
+                <li>VLANs</li><li>Cisco IOS</li><li>UniFi</li><li>Firewall policy</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
+                <span>Image coming soon</span>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Server virtualization move</h3>
+              <p>
+                Consolidated a rack of aging physical servers onto Proxmox &mdash; snapshots,
+                scheduled off-site backups, and a restore path tested for every guest before
+                anything was decommissioned.
+              </p>
+              <ul class="chips project-tech">
+                <li>Proxmox</li><li>Debian</li><li>Dell RAID</li><li>Backup &amp; recovery</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
+                <span>Image coming soon</span>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Email deliverability hardening</h3>
+              <p>
+                Moved a small business off shared-hosting mail: own relays, correct MX
+                records, and SPF, DKIM and DMARC aligned so invoices stopped landing in
+                spam folders.
+              </p>
+              <ul class="chips project-tech">
+                <li>SPF</li><li>DKIM</li><li>DMARC</li><li>MX &amp; relays</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
+                <span>Image coming soon</span>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Hosted phone system rollout</h3>
+              <p>
+                Deployed FusionPBX for a contact-centre team &mdash; SIP trunking, ring groups
+                and time-of-day routing &mdash; with call quality and registrations watched
+                from day one.
+              </p>
+              <ul class="chips project-tech">
+                <li>FusionPBX</li><li>SIP trunking</li><li>Call routing</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
+                <span>Image coming soon</span>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Monitoring &amp; alerting</h3>
+              <p>
+                Replaced guesswork with dashboards: Prometheus metrics, Grafana Loki logs and
+                OpenNMS availability checks, alerting on the failures that actually reach
+                users.
+              </p>
+              <ul class="chips project-tech">
+                <li>Prometheus</li><li>Grafana Loki</li><li>OpenNMS</li><li>Bash</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="project-card reveal">
+            <figure class="project-media">
+              <span class="project-media-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m5 17 4.5-4.5L13 16l2.5-2.5L19 17"/></svg>
+                <span>Image coming soon</span>
+              </span>
+            </figure>
+            <div class="project-body">
+              <h3>Remote access for distributed teams</h3>
+              <p>
+                Built site-to-site and client VPNs so remote staff reach internal systems
+                without exposing them, backed by MFA and per-role firewall rules.
+              </p>
+              <ul class="chips project-tech">
+                <li>OpenVPN</li><li>VyOS</li><li>MFA</li><li>Firewall policy</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <!-- Certifications -->
     <section class="section" id="certifications" aria-labelledby="certifications-title">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="section-label">03 — Certifications</p>
+          <p class="section-label">04 — Certifications</p>
           <h2 id="certifications-title">Training &amp; credentials</h2>
           <p class="section-intro">Vendor certifications and hands-on labs across networking, security, and cloud.</p>
         </div>
@@ -389,7 +522,7 @@
     <section class="section" id="skills" aria-labelledby="skills-title">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="section-label">04 — Skills</p>
+          <p class="section-label">05 — Skills</p>
           <h2 id="skills-title">Technical toolkit</h2>
           <p class="section-intro">The platforms and protocols I work with day to day.</p>
         </div>
@@ -486,7 +619,7 @@
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="contact-panel reveal">
-          <p class="section-label">05 — Contact</p>
+          <p class="section-label">06 — Contact</p>
           <h2 id="contact-title">Let&rsquo;s talk infrastructure.</h2>
           <p class="contact-lead">
             Available for network and systems administration work, infrastructure
