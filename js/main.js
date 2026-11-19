@@ -53,48 +53,92 @@
     scheme.addEventListener("change", onSchemeChange);
   }
 
-  /* ----------------------------------------------------------- Mobile nav */
+  /* ------------------------------------------------------------- Navigation
+     One navigation tree at every size. The browser gives us the collapsed
+     menu for free (popover: top layer, light dismiss, Escape, focus return);
+     script only decides whether the same list is inline or collapsed by
+     measuring the header row, so text size and translations are accounted
+     for without hard-coded breakpoints. */
+  var header = document.querySelector(".site-header");
+  var headerInner = header ? header.querySelector(".header-inner") : null;
   var nav = document.querySelector(".nav");
   var navToggle = document.querySelector(".nav-toggle");
   var navList = document.getElementById("nav-list");
+  var hasPopover = Object.hasOwn(HTMLElement.prototype, "popover");
 
-  function closeNav() {
-    if (!nav || !navToggle) return;
-    nav.classList.remove("is-open");
-    navToggle.setAttribute("aria-expanded", "false");
-  }
+  if (header && headerInner && nav && navToggle && navList) {
+    if (hasPopover) {
+      var syncNavLayout = function () {
+        var wasOpen = navList.matches(":popover-open");
 
-  if (nav && navToggle) {
-    navToggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+        // Measure the inline row without animating it.
+        headerInner.classList.add("is-measuring");
+        header.classList.add("is-wide");
+        navList.removeAttribute("popover");
 
-    if (navList) {
+        var fits = headerInner.scrollWidth <= headerInner.clientWidth + 1;
+
+        if (!fits) {
+          header.classList.remove("is-wide");
+          navList.setAttribute("popover", "auto");
+          if (wasOpen) navList.showPopover();
+        }
+
+        window.requestAnimationFrame(function () {
+          headerInner.classList.remove("is-measuring");
+        });
+      };
+
+      syncNavLayout();
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(syncNavLayout).observe(headerInner);
+      }
+
+      // Web fonts change the width of the links after first layout.
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncNavLayout).catch(function () {});
+      }
+
+      // Following a link leaves the menu open; dismiss it like a light dismiss.
       navList.addEventListener("click", function (event) {
-        if (event.target.closest("a")) closeNav();
+        if (event.target.closest("a") && navList.matches(":popover-open")) {
+          navList.hidePopover();
+        }
+      });
+    } else {
+      /* Fallback for browsers without the Popover API. */
+      navToggle.setAttribute("aria-expanded", "false");
+
+      var setNavOpen = function (open) {
+        nav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+
+      navToggle.addEventListener("click", function () {
+        setNavOpen(!nav.classList.contains("is-open"));
+      });
+
+      navList.addEventListener("click", function (event) {
+        if (event.target.closest("a")) setNavOpen(false);
+      });
+
+      document.addEventListener("click", function (event) {
+        if (nav.classList.contains("is-open") && !nav.contains(event.target)) {
+          setNavOpen(false);
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && nav.classList.contains("is-open")) {
+          setNavOpen(false);
+          navToggle.focus();
+        }
       });
     }
-
-    document.addEventListener("click", function (event) {
-      if (!nav.classList.contains("is-open")) return;
-      if (!nav.contains(event.target)) closeNav();
-    });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && nav.classList.contains("is-open")) {
-        closeNav();
-        navToggle.focus();
-      }
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 820) closeNav();
-    });
   }
 
   /* ------------------------------------------------------- Header shadow */
-  var header = document.querySelector(".site-header");
   var ticking = false;
 
   function onScroll() {
@@ -134,56 +178,85 @@
     });
   }
 
-  /* ------------------------------------------------------------- Scrollspy */
+  /* ------------------------------------------------------------- Scrollspy
+     Browsers with scroll-target-group highlight the link whose section is in
+     view (:target-current), with no scroll listener at all. Script mirrors
+     that state into aria-current and falls back to an IntersectionObserver. */
   var sections = Array.prototype.slice.call(
     document.querySelectorAll("main section[id]")
   );
   var navLinks = navList
-    ? Array.prototype.slice.call(navList.querySelectorAll("a"))
+    ? Array.prototype.slice.call(navList.querySelectorAll('a[href^="#"]'))
     : [];
 
-  function setActive(id) {
-    navLinks.forEach(function (link) {
-      var matches = link.getAttribute("href") === "#" + id;
-      if (matches) {
-        link.setAttribute("aria-current", "location");
+  function markCurrent(link) {
+    navLinks.forEach(function (item) {
+      var isCurrent = item === link;
+      item.classList.toggle("target-current", isCurrent);
+      if (isCurrent) {
+        item.setAttribute("aria-current", "true");
       } else {
-        link.removeAttribute("aria-current");
+        item.removeAttribute("aria-current");
       }
     });
   }
 
-  if (sections.length && navLinks.length) {
-    var spyTicking = false;
+  if (navList && sections.length && navLinks.length) {
+    if (CSS.supports("scroll-target-group: auto")) {
+      var currentLink = null;
 
-    var updateActive = function () {
-      var probe = window.scrollY + 120;
-      var activeId = sections[0].id;
+      // :target-current is computed natively and continuously, so mirror it
+      // every frame while scrolling rather than only once scrolling stops.
+      var syncCurrent = function () {
+        var found = navList.querySelector("a:target-current");
+        if (found === currentLink) return;
+        currentLink = found;
+        markCurrent(found);
+      };
 
-      sections.forEach(function (section) {
-        if (section.offsetTop <= probe) activeId = section.id;
-      });
+      // :target-current settles one task after the scrolling ends.
+      var onScrollEnd = function () {
+        window.setTimeout(syncCurrent, 0);
+      };
 
-      // At the very bottom of the page the last section is the one in view.
-      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
-        activeId = sections[sections.length - 1].id;
+      syncCurrent();
+      window.addEventListener("scrollend", onScrollEnd);
+      window.addEventListener("resize", onScrollEnd);
+
+      if (!("onscrollend" in window)) {
+        var settleTimer;
+        window.addEventListener(
+          "scroll",
+          function () {
+            window.clearTimeout(settleTimer);
+            settleTimer = window.setTimeout(syncCurrent, 160);
+          },
+          { passive: true }
+        );
       }
 
-      setActive(activeId);
-    };
-
-    var onSpyScroll = function () {
-      if (spyTicking) return;
-      spyTicking = true;
-      window.requestAnimationFrame(function () {
-        updateActive();
-        spyTicking = false;
+      // The list starts in the top layer; re-sync when it comes back inline.
+      navList.addEventListener("toggle", function (event) {
+        if (event.newState === "open") syncCurrent();
       });
-    };
+    } else if ("IntersectionObserver" in window) {
+      var spyObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var match = navLinks.filter(function (link) {
+              return link.getAttribute("href") === "#" + entry.target.id;
+            })[0];
+            if (match) markCurrent(match);
+          });
+        },
+        { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
+      );
 
-    window.addEventListener("scroll", onSpyScroll, { passive: true });
-    window.addEventListener("resize", onSpyScroll);
-    updateActive();
+      sections.forEach(function (section) {
+        spyObserver.observe(section);
+      });
+    }
   }
 
   /* ------------------------------------------------------------- Footer */

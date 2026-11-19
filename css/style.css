@@ -4,9 +4,35 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   Fonts — self-hosted so the page makes no third-party requests
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("../assets/fonts/sora-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
    Tokens
    -------------------------------------------------------------------------- */
 :root {
+  color-scheme: light;
   --bg: #f8f8f5;
   --bg-elevated: #ffffff;
   --bg-subtle: #f1f1ec;
@@ -34,6 +60,7 @@
 }
 
 :root[data-theme="dark"] {
+  color-scheme: dark;
   --bg: #0b0f13;
   --bg-elevated: #111820;
   --bg-subtle: #0f151b;
@@ -54,6 +81,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --bg: #0b0f13;
     --bg-elevated: #111820;
     --bg-subtle: #0f151b;
@@ -108,6 +136,7 @@ h3 {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 h1 {
@@ -127,6 +156,7 @@ h3 {
 
 p {
   margin: 0 0 1.15em;
+  text-wrap: pretty;
 }
 
 p:last-child {
@@ -172,6 +202,12 @@ svg {
   border-radius: 4px;
 }
 
+/* Sections receive focus when their nav link is followed; no ring needed. */
+.section:focus-visible,
+.hero:focus-visible {
+  outline: none;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--on-accent);
@@ -200,12 +236,12 @@ svg {
   color: var(--bg);
   font-size: 0.875rem;
   font-weight: 600;
-  transform: translateY(-200%);
-  transition: transform 0.2s var(--ease);
+  translate: 0 -200%;
+  transition: translate 0.2s var(--ease);
 }
 
 .skip-link:focus {
-  transform: none;
+  translate: none;
   color: var(--bg);
 }
 
@@ -221,6 +257,7 @@ svg {
   position: sticky;
   top: 0;
   z-index: 50;
+  anchor-name: --site-header;
   background: var(--header-bg);
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(14px);
@@ -237,6 +274,19 @@ svg {
   align-items: center;
   gap: 1.5rem;
   min-height: 72px;
+}
+
+/* Keep every header item at its natural width so the row can be measured. */
+.header-inner > * {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.header-inner.is-measuring *,
+.header-inner.is-measuring *::before,
+.header-inner.is-measuring *::after {
+  transition: none !important;
+  animation: none !important;
 }
 
 .brand {
@@ -291,7 +341,14 @@ svg {
   align-items: center;
 }
 
+/* One navigation tree at every size: inline when the header row fits, a native
+   popover when it does not. The popover supplies top-layer stacking, light
+   dismiss, Escape handling and focus return without custom code. */
 .nav-list {
+  scroll-target-group: auto;
+}
+
+.nav-list:not([popover]) {
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -313,11 +370,11 @@ svg {
   background: var(--accent-soft);
 }
 
-.nav-list a[aria-current] {
+.nav-list a:is(:target-current, .target-current) {
   color: var(--ink);
 }
 
-.nav-list a[aria-current]::after {
+.nav-list a:is(:target-current, .target-current)::after {
   content: "";
   position: absolute;
   left: 0.75rem;
@@ -328,8 +385,80 @@ svg {
   background: var(--accent);
 }
 
+/* Collapsed: the same list as an anchored popover. */
+.nav-list[popover] {
+  position: fixed;
+  inset: auto;
+  inset-block-start: 4.75rem;
+  inset-block-start: anchor(--site-header bottom);
+  inset-inline-end: max(1rem, env(safe-area-inset-right));
+  inline-size: min(84dvw, 20rem);
+  max-inline-size: calc(100dvw - 2rem);
+  block-size: fit-content;
+  max-block-size: calc(100dvh - 6rem);
+  margin: 0;
+  margin-block-start: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-md);
+  overflow: auto;
+  transform-origin: top right;
+  opacity: 0;
+  translate: 0 -6px;
+  transition: opacity 0.18s var(--ease), translate 0.18s var(--ease),
+    display 0.18s, overlay 0.18s;
+  transition-behavior: allow-discrete;
+}
+
+.nav-list[popover]:is(:popover-open) {
+  display: grid;
+  gap: 0.15rem;
+  opacity: 1;
+  translate: 0 0;
+}
+
+@starting-style {
+  .nav-list[popover]:is(:popover-open) {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
+.nav-list[popover]::backdrop {
+  background: rgb(9 14 18 / 0.22);
+}
+
+.nav-list[popover] a {
+  padding: 0.7rem 0.85rem;
+  font-size: 0.9375rem;
+}
+
+.nav-list[popover] a:is(:target-current, .target-current)::after {
+  right: auto;
+  width: 1.1rem;
+  bottom: 0.4rem;
+}
+
+/* Manual fallback for browsers without the Popover API. */
+.nav.is-open .nav-list {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 1.375rem;
+  right: 1.375rem;
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-md);
+}
+
 .nav-toggle {
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
@@ -346,6 +475,10 @@ svg {
   width: 20px;
   height: 20px;
   stroke-width: 1.8;
+}
+
+.site-header.is-wide .nav-toggle {
+  display: none;
 }
 
 .theme-toggle {
@@ -411,19 +544,24 @@ svg {
   letter-spacing: -0.005em;
   line-height: 1.2;
   cursor: pointer;
-  transition: transform 0.18s var(--ease), background 0.18s var(--ease),
-    color 0.18s var(--ease), border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+  transition: translate 0.18s var(--ease), scale 0.15s var(--ease),
+    background 0.18s var(--ease), color 0.18s var(--ease),
+    border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+
+.btn:active {
+  scale: 0.97;
 }
 
 .btn svg {
   width: 16px;
   height: 16px;
   stroke-width: 1.9;
-  transition: transform 0.2s var(--ease);
+  transition: translate 0.2s var(--ease);
 }
 
 .btn:hover svg.btn-arrow {
-  transform: translateX(3px);
+  translate: 3px 0;
 }
 
 .btn-primary {
@@ -435,7 +573,7 @@ svg {
 .btn-primary:hover {
   background: var(--accent-hover);
   color: var(--on-accent);
-  transform: translateY(-1px);
+  translate: 0 -1px;
   box-shadow: var(--shadow-md);
 }
 
@@ -1430,13 +1568,13 @@ svg {
    -------------------------------------------------------------------------- */
 :root.js .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  translate: 0 16px;
+  transition: opacity 0.6s var(--ease), translate 0.6s var(--ease);
 }
 
 :root.js .reveal.is-visible {
   opacity: 1;
-  transform: none;
+  translate: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1453,24 +1591,13 @@ svg {
 
   :root.js .reveal {
     opacity: 1;
-    transform: none;
+    translate: none;
   }
 }
 
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .nav-list {
-    gap: 0.15rem;
-  }
-
-  .nav-list a {
-    padding-inline: 0.55rem;
-    font-size: 0.84rem;
-  }
-}
-
 @media (max-width: 960px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -1508,53 +1635,8 @@ svg {
     gap: 0.75rem;
   }
 
-  .nav-toggle {
-    display: inline-flex;
-  }
-
   .nav {
     order: 3;
-  }
-
-  /* The dropdown is positioned against the sticky header, which spans the page. */
-  .nav {
-    position: static;
-  }
-
-  .nav-list {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 1.375rem;
-    right: 1.375rem;
-    display: grid;
-    gap: 0.15rem;
-    padding: 0.6rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--bg-elevated);
-    box-shadow: var(--shadow-md);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
-    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
-  }
-
-  .nav-list a {
-    padding: 0.7rem 0.85rem;
-    font-size: 0.9375rem;
-  }
-
-  .nav-list a[aria-current]::after {
-    left: 0.85rem;
-    right: auto;
-    width: 1.1rem;
-    bottom: 0.4rem;
-  }
-
-  .nav.is-open .nav-list {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
   }
 
   .toolkit-inner {
@@ -1698,7 +1780,7 @@ svg {
   :root.js .reveal,
   :root.js .reveal.is-visible {
     opacity: 1 !important;
-    transform: none !important;
+    translate: none !important;
   }
 
   .section {

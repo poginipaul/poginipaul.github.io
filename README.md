@@ -9,9 +9,30 @@ frameworks, no dependencies: push to `main` and GitHub Pages serves it as is.
 ```
 index.html      single page: hero, about, experience, projects, certifications, skills, contact
 css/style.css   all styles, design tokens, dark theme, responsive and print rules
-js/main.js      theme toggle, mobile menu, scroll reveal, scrollspy
+js/main.js      theme toggle, navigation, scroll reveal, scrollspy
 img/            avatar and favicon
+assets/         résumé PDF and self-hosted fonts
 ```
+
+## Modern web platform notes
+
+The site follows the [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance)
+browser guidance. No polyfills or third-party requests are involved.
+
+- **Navigation** — one `<ul>` for every screen size. It is a native `popover`
+  (top layer, light dismiss, Escape, focus return) and becomes an inline row when
+  the header's contents fit. `js/main.js` decides by measuring the row, so there
+  is no breakpoint to keep in sync with the links. Browsers without the Popover
+  API get the `is-open` fallback in `main.js`.
+- **Scrollspy** — `scroll-target-group: auto` with `:target-current` highlights
+  the section in view with no scroll math; script mirrors it to `aria-current`
+  and falls back to `IntersectionObserver` where unsupported.
+- **Motion** — reveal and hover effects use the individual `translate`, `scale`
+  and `rotate` properties so they stay on the compositor, and everything honours
+  `prefers-reduced-motion`.
+- **Fonts** — Inter and Sora are self-hosted in `assets/fonts` (latin variable
+  woff2, `font-display: swap`), so the page loads nothing from `fonts.googleapis.com`.
+  `color-scheme` is set per theme so native scrollbars and controls match.
 
 ## Local preview
 
