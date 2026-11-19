@@ -71,6 +71,10 @@
       var syncNavLayout = function () {
         var wasOpen = navList.matches(":popover-open");
 
+        // Close before dropping the attribute: whether an open popover keeps
+        // its top-layer placement after that is left to the browser.
+        if (wasOpen) navList.hidePopover();
+
         // Measure the inline row without animating it.
         headerInner.classList.add("is-measuring");
         header.classList.add("is-wide");

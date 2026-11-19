@@ -345,13 +345,15 @@ svg {
    popover when it does not. The popover supplies top-layer stacking, light
    dismiss, Escape handling and focus return without custom code. */
 .nav-list {
-  scroll-target-group: auto;
-}
-
-.nav-list:not([popover]) {
   display: flex;
   align-items: center;
   gap: 0.35rem;
+  scroll-target-group: auto;
+}
+
+/* Closed menus are never rendered, whatever the UA sheet does. */
+.nav-list[popover]:not(:popover-open) {
+  display: none;
 }
 
 .nav-list a {
@@ -407,20 +409,18 @@ svg {
   transform-origin: top right;
   opacity: 0;
   translate: 0 -6px;
-  transition: opacity 0.18s var(--ease), translate 0.18s var(--ease),
-    display 0.18s, overlay 0.18s;
-  transition-behavior: allow-discrete;
+  transition: opacity 0.18s var(--ease), translate 0.18s var(--ease);
 }
 
-.nav-list[popover]:is(:popover-open) {
+.nav-list[popover]:popover-open {
   display: grid;
   gap: 0.15rem;
   opacity: 1;
-  translate: 0 0;
+  translate: none;
 }
 
 @starting-style {
-  .nav-list[popover]:is(:popover-open) {
+  .nav-list[popover]:popover-open {
     opacity: 0;
     translate: 0 -6px;
   }
@@ -441,20 +441,47 @@ svg {
   bottom: 0.4rem;
 }
 
-/* Manual fallback for browsers without the Popover API. */
-.nav.is-open .nav-list {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 1.375rem;
-  right: 1.375rem;
-  display: grid;
-  gap: 0.15rem;
+/* Wide: the inline row wins over every collapsed-menu rule, so no leftover
+   popover state can ever paint a floating box in the header. */
+.site-header.is-wide .nav-list {
+  position: static;
+  display: flex;
+  inline-size: auto;
+  max-inline-size: none;
+  block-size: auto;
+  max-block-size: none;
   margin: 0;
-  padding: 0.6rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow-md);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  opacity: 1;
+  translate: none;
+  gap: 0.35rem;
+}
+
+/* Manual fallback for browsers without the Popover API. */
+@supports not selector(:popover-open) {
+  .nav:not(.is-open) .nav-list {
+    display: none;
+  }
+
+  .nav.is-open .nav-list {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 1.375rem;
+    right: 1.375rem;
+    display: grid;
+    gap: 0.15rem;
+    margin: 0;
+    padding: 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .nav-toggle {
