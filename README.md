@@ -20,6 +20,14 @@ python3 -m http.server 3000
 # then open http://localhost:3000
 ```
 
+## Résumé download
+
+The header, hero and contact section link to `assets/Paul-Basongit-Resume.pdf`
+with a `download` attribute, so recruiters get the file instead of a PDF viewer.
+To update it, replace that file (keeping the name) or change the three `href`s in
+`index.html`. The contact card also shows the page count and file size — update
+that line if the new PDF differs.
+
 ## Editing content
 
 - **Name / role** — `index.html`, hero `<h1>`, the brand in the header, and the
@@ -36,6 +44,8 @@ python3 -m http.server 3000
   with `<img src="img/projects/name.jpg" alt="Describe the image" width="1200" height="750" loading="lazy">`
   (16:10 crops cleanly; any size is scaled to fit).
 - **Photo** — replace `img/ava.jpg` with a square image (330 × 330 or larger).
+- **Résumé** — replace `assets/Paul-Basongit-Resume.pdf`; the download buttons
+  pick it up automatically.
 - **Colours** — the `:root` block at the top of `css/style.css` holds every colour
   and radius. `--accent` controls the highlight colour in both themes.
 - **Theme** — the site follows the visitor's system preference and can be switched
